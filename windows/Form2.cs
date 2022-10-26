@@ -12,6 +12,9 @@ namespace windows
 {
     public partial class Form2 : Form
     {
+
+        // Is password_wrong
+        bool isPasswordRight = false;
         public Form2()
         {
             InitializeComponent();
@@ -23,12 +26,15 @@ namespace windows
             String password ="1234";
             if (String.Equals(password, textBox1.Text))
             {
+                isPasswordRight = true;
                 this.Close();
             }
             else
             {
                 MessageBox.Show("密碼錯誤");
             }
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -38,5 +44,17 @@ namespace windows
             // 關閉整個application
             System.Environment.Exit(0);
         }
+
+        private void close_form_action(object sender, FormClosingEventArgs e)
+        {
+            if (this.isPasswordRight)
+            {
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
     }
+
 }
